@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Maze</title>
+    <style>
+      span {
+        margin-left: 10.8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="maze-content"></div>
+    <script>
+      const totalMaze = 15;
+      let contentMaze = "",
+        typeMaze = "left";
+
+      for (let index = 1; index <= totalMaze; index++) {
+        contentMaze += "<br>";
+        for (let index2 = 1; index2 <= totalMaze; index2++) {
+          if (index % 2 === 0) {
+            if (index2 === 1 || index2 === totalMaze) contentMaze += "@";
+            else contentMaze += "<span>&nbsp;</span>";
+          } else {
+            if (typeMaze === "left") {  
+              if (index2 === 2) contentMaze += "<span>&nbsp;</span>";
+              else contentMaze += "@";
+            } else {
+              if (index2 === totalMaze - 1)
+                contentMaze += "<span>&nbsp;</span>";
+              else contentMaze += "@";
+            }
+          }
+        }
+        if (index % 2 !== 0) {
+          if (typeMaze === "left") typeMaze = "right";
+          else typeMaze = "left";
+        }
+      }
+      document.getElementById("maze-content").innerHTML = contentMaze;
+    </script>
+  </body>
+</html>
